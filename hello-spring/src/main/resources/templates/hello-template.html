@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<p th:text="'hello ' + ${name}">hello! empty</p>
+<!-- thymeleaf의 장점
+      * 서버없이 absolute path를 이용해 크롬에서 열어도 (hello! empty)로 나옴
+      * 동작을 하면 th:text의 내용으로 나옴
+      -->
+</body>
+</html>
