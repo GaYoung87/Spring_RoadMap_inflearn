@@ -7,8 +7,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,7 +37,7 @@ class MemberServiceTest {
     void 회원가입() {
         // given
         Member member = new Member();
-        member.setName("hello");  // 여기도 spring이면 회원가입에서 터진다 -> test해보기 -> clear해줘야함
+        member.setName("sring");  // 여기도 spring이면 회원가입에서 터진다 -> test해보기 -> clear해줘야함
 
         // when
         Long saveId = memberService.join(member);
@@ -78,13 +76,5 @@ class MemberServiceTest {
 
         // then
 
-    }
-
-    @Test
-    void findMembers() {
-    }
-
-    @Test
-    void findOne() {
     }
 }

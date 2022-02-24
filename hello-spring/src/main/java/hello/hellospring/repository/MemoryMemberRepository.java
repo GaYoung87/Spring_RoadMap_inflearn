@@ -1,10 +1,12 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-public class MemoryMemberRepository implements MemberRepository{
+@Repository
+public class  MemoryMemberRepository implements MemberRepository{
 
     // 동시성 문제 있을 수 있지만 여기서는 간단하게만 진행
     private static Map<Long, Member> store = new HashMap<>();
