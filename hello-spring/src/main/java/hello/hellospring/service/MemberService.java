@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    @Autowired
+    /*
+    * Q. 만약, @Autowired붙이고, SpringConfig에 아무것도 없다면 작동이 될까?
+    * A. No. why? 스프링이 MemberService를 관리하고있지 않기 때문 */
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

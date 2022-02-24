@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
+// @Controller는 Spring이 관리하는 것이므로 스프링빈에 올라가고 @Autowired로 연결해줘야함!
 public class MemberController {
     // Spring실행하면 Spring Container라는 통이 생김
     // -> @Controller있으면 MemberController객체를 생성해서 spring안에 넣어두고 관리

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
 public class  MemoryMemberRepository implements MemberRepository{
 
     // 동시성 문제 있을 수 있지만 여기서는 간단하게만 진행
