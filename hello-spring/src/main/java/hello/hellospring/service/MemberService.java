@@ -4,10 +4,12 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional  // JPA사용할 때, 데이터 저장/변경할 때 필요(모든 데이터 변경이 트랜젝션 안에서 이루어져야함)
 public class MemberService {
 
     private final MemberRepository memberRepository;
