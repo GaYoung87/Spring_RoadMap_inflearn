@@ -34,12 +34,21 @@ public class MemberService {
         });  // Optional로 감싸서 가능!
          */
 
-        // Optional이 이쁘지 않기때문에 한번에 작성하면 보기좋음음
-        validateDuplicateMember(member);
+        long start = System.currentTimeMillis();
 
-        memberRepository.save(member);
+        try{
+            // Optional이 이쁘지 않기때문에 한번에 작성하면 보기좋음음
+            validateDuplicateMember(member);
 
-        return member.getId();
+            memberRepository.save(member);
+
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = " + timeMs + "ms");
+        }
+
     }
 
     // Shift+Ctrl+Alt+T(리팩토링 관련) -> extend method
