@@ -18,8 +18,7 @@ class MemberServiceIntegrationTest {
 
     // test에서는 내가 필요한거 쓰고 끝 -> 제일 간단한 방법 사용
     @Autowired MemberService memberService;
-    @Autowired
-    MemberRepository memberRepository;
+    @Autowired MemberRepository memberRepository;
 
     // test는 예외 flow 훨씬중요함
     @Test
