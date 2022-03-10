@@ -2,15 +2,39 @@ package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
+    // 할인정책을 변경하기 위해서는 할인의 클라이언트인 OrderServiceImpl을 수정해야함
+    /** 이때, 문제발생!!!
+     * 1. 역할과 구현 분리 ok
+     * 2. 다형성도 활용하고 인터페이스와 구현 객체 분리 ok
+     * 3. OCP, DIP와 같은 객체지향 설계원칙 준수 no!
+     *     why? 주문서비스 클라이언트(OrderServiceImpl)는 추상(인터페이스)인 DiscountPolicy뿐만 아니라,
+     *          구현클래스인 FixDiscountPolicy, RateDiscountPolicy에도 의존함
+     *   -> OCP(변경하지 않고 확장 가능) -> 지금 코드는 기능을 확장해서 변경하면 클라이언트 코드에 영향 줌!!
+    */
 
     // 회원과 할인정책 찾아야하므로 필요
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final MemberRepository memberRepository;
+//    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    // 이렇게 작성하면 OrderServiceImpld이 DiscountPolicy에도 의존하지만, FixDiscountPolicy에도 의존함 -> DIP위반!
+    // DIP = 구체화가 아닌 추상화에 의존해라
+//    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    private DiscountPolicy discountPolicy;  // 인터페이스(추상)에만 의존 + 이거만 적으면 구현에 할당된게없어서 nullPointException
+
+    // 구현체에 대해 알 수 없음음
+   public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
+    /**
+     * 해결책 : 누군가가 클라이언트인 OrderServiceImp에 DiscountPolicy의 구현객체를 대신 생성하고 주입해줘야함
+     */
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
