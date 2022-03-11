@@ -8,7 +8,10 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration  // 설정정보
 public class AppConfig {
 
    // 1. 기존 _ 생성자 주입
@@ -22,19 +25,23 @@ public class AppConfig {
 
     // AppConfig 리팩터링
     // why? 중복존재 + 역할에 따른 구현 잘 안보임
+    @Bean  // @Bean을 통해 스프링컨테이너에 등록됨
     public MemberSerivce memberSerivce() {
         return new MemberServiceImpl(memberRepository());  // 생성자 주입
     }
 
-    private MemberRepository memberRepository() {
+    @Bean
+    public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
 
+    @Bean
     public OrderService orderService() {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
-    private DiscountPolicy discountPolicy() {
+    @Bean
+    public DiscountPolicy discountPolicy() {
         return new FixDiscountPolicy();
     }
 
