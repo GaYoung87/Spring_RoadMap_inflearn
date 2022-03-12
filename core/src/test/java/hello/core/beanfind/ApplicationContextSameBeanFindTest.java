@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class ApplicationContextSameBeanFindTest {
 
-    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationContextSameBeanFindTest.SameBeanConfig.class);
 
     @Test
     @DisplayName("타입으로 조회 시 같은 타입이 둘 이상있으면, 중복오류 발생")
