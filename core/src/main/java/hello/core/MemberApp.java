@@ -27,8 +27,9 @@ public class MemberApp {
 
         // 스프링 생성
         // AppConfig에 있는 환경설정정보를 가지고 스프링 컨테이너에 객체생성한걸 관리 + AppConfig의 @Configuration이용
+        // AnnotationConfigApplicationContext는 ApplicationContext 인터페이스의 구현체
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-        MemberSerivce memberSerivce = applicationContext.getBean("memberSerivce", MemberSerivce.class);  // 이름 + 반환타입
+        MemberSerivce memberSerivce = applicationContext.getBean("memberService", MemberSerivce.class);  // 이름 + 반환타입
 
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberSerivce.join(member);

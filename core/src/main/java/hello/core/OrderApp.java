@@ -33,7 +33,7 @@ public class OrderApp {
 //        OrderService orderService = appConfig.orderService();
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-        MemberSerivce memberSerivce = applicationContext.getBean("memberSerivce", MemberSerivce.class);  // 이름 + 반환타입
+        MemberSerivce memberSerivce = applicationContext.getBean("memberService", MemberSerivce.class);  // 이름 + 반환타입
         OrderService orderService = applicationContext.getBean("orderService", OrderService.class);
 
         Long memberId = 1L;

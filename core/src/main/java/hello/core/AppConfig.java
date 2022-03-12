@@ -26,7 +26,7 @@ public class AppConfig {
     // AppConfig 리팩터링
     // why? 중복존재 + 역할에 따른 구현 잘 안보임
     @Bean  // @Bean을 통해 스프링컨테이너에 등록됨
-    public MemberSerivce memberSerivce() {
+    public MemberSerivce memberService() {
         return new MemberServiceImpl(memberRepository());  // 생성자 주입
     }
 
