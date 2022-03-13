@@ -20,9 +20,6 @@ public class MemberServiceImpl implements MemberSerivce{
         this.memberRepository = memberRepository;
     }
 
-
-
-
    @Override
     public void join(Member member) {
         memberRepository.save(member);
@@ -31,5 +28,10 @@ public class MemberServiceImpl implements MemberSerivce{
     @Override
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
+    }
+
+    // 테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
