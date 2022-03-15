@@ -1,7 +1,11 @@
 package hello.core.member;
 
-// MemberSerivce의 구현체
-public class MemberServiceImpl implements MemberSerivce{
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component  // 이거 붙이면 @Bean 등록안해도 됨 -> 자동으로 MemberServiceImpl등록
+// 그러면 주입은 어케하할꺼야? @Autowired를 통해 자동 의존관계 주입
+public class MemberServiceImpl implements MemberSerivce{  // MemberSerivce의 구현체
     // MemberServiceImpl은 인터페이스인 MemberRepository, 구현체인 MemoryMemberRepository 둘다 의존
     // DIP 위반!
 
@@ -16,11 +20,12 @@ public class MemberServiceImpl implements MemberSerivce{
     private final MemberRepository memberRepository;
     // ctrl+shift+enter하면 ;포함해서 나옴
 
+    @Autowired  // 자동 의존관계주입 -> ac.getBean(MemberRepository.class)역할을 함
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
-   @Override
+    @Override
     public void join(Member member) {
         memberRepository.save(member);
     }
