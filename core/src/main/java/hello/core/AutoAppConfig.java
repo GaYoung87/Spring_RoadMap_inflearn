@@ -1,5 +1,8 @@
 package hello.core;
 
+import hello.core.member.MemberRepository;
+import hello.core.member.MemoryMemberRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -18,4 +21,13 @@ import org.springframework.context.annotation.FilterType;
 // 기존 예제 코드를 최대한 남기고 유지하기 위해서 이 방법을 선택했다.
 public class AutoAppConfig {
     // 기존의 AppConfig와 다르게 @Bean으로 설정한 클래스가 하나도 없음!
+
+    // 만약. 여기에도 Bean 이름붙여 설정하고, MemoryMemberRepository에도 @Component를 붙인다면?
+    // 1. MemoryMemberRepository는 memoryMemberRepository로 됨(무조건 첫글자 소문자로 변경됨)
+    // 2. 이때 돌리면 성공
+    // 3. overriding되기 때문 -> 수동 빈 등록이 우선권 있음음
+   @Bean(name = "memoryMemberRepository")
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
 }
