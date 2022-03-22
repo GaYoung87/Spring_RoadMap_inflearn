@@ -32,6 +32,8 @@ public class AutowiredTest {
 
         @Autowired
         public void setNoBean3(Optional<Member> member) {  // 값이 있으면 있는대로, 없으면 Optional.empty로 나옴
+            // @Nullable, Optional은 스프링 전반에 걸쳐서 지원됨
+            // 생성자 자동 주입에서 특정 필드에만 사용해도 된다.
             System.out.println("member = " + member);
         }
     }
