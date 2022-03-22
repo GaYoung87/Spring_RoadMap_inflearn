@@ -26,8 +26,8 @@ public class AutoAppConfig {
     // 1. MemoryMemberRepository는 memoryMemberRepository로 됨(무조건 첫글자 소문자로 변경됨)
     // 2. 이때 돌리면 성공
     // 3. overriding되기 때문 -> 수동 빈 등록이 우선권 있음음
-   @Bean(name = "memoryMemberRepository")
-    public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
-    }
+//    @Bean(name = "memoryMemberRepository")
+//    public MemberRepository memberRepository() {
+//        return new MemoryMemberRepository();
+//    }
 }

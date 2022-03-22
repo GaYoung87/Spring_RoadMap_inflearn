@@ -27,18 +27,43 @@ public class OrderServiceImpl implements OrderService{
     // 이렇게 작성하면 OrderServiceImpld이 DiscountPolicy에도 의존하지만, FixDiscountPolicy에도 의존함 -> DIP위반!
     // DIP = 구체화가 아닌 추상화에 의존해라
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
-    private DiscountPolicy discountPolicy;  // 인터페이스(추상)에만 의존 + 이거만 적으면 구현에 할당된게없어서 nullPointException
+    private final DiscountPolicy discountPolicy;  // 인터페이스(추상)에만 의존 + 이거만 적으면 구현에 할당된게없어서 nullPointException
 
-    // 구현체에 대해 알 수 없음
+    // 1.생성자주입_구현체에 대해 알 수 없음
+    /**
+     * 해결책 : 누군가가 클라이언트인 OrderServiceImp에 DiscountPolicy의 구현객체를 대신 생성하고 주입해줘야함
+     */
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
 
-    /**
-     * 해결책 : 누군가가 클라이언트인 OrderServiceImp에 DiscountPolicy의 구현객체를 대신 생성하고 주입해줘야함
-     */
+    // 2. 수정자주입 : private final에서 final 없애야함
+//    @Autowired(required = false)
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//    }
+//
+//    @Autowired
+//    public void setMemberRepository(DiscountPolicy discountPolicy) {
+//        this.discountPolicy = discountPolicy;
+//    }
+
+    // 3. 필드주입
+//    @Autowired private MemberRepository memberRepository;
+//    @Autowired private DiscountPolicy discountPolicy;
+
+    // 4. 일반 메서드 주입
+//    private MemberRepository memberRepository;
+//    private DiscountPolicy discountPolicy;
+//
+//    @Autowired
+//    public void init(MemberRepository memberRepository, DiscountPolicy
+//            discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
