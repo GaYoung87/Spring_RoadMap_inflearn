@@ -55,6 +55,7 @@ public class OrderServiceImpl implements OrderService{
 //    @Autowired private DiscountPolicy discountPolicy;
 
     // 4. 일반 메서드 주입
+    // 이때 final을 붙이면 init자체가 에러
 //    private MemberRepository memberRepository;
 //    private DiscountPolicy discountPolicy;
 //
