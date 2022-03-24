@@ -52,6 +52,7 @@ public class OrderServiceImpl implements OrderService{
 
     // 22. 조회 빈 2개이상일 때 - @Qualifier
 //    @Autowired
+//    // @Qualifier("mainDiscountPolicy")를 @MainDiscountPolicy로 바꿔도 됨 -> @MainDiscountPolicy어노테이션 만들었으니까!
 //    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy")DiscountPolicy discountPolicy) {
 //        this.memberRepository = memberRepository;
 //        this.discountPolicy = discountPolicy;

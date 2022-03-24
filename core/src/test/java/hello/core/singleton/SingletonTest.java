@@ -1,7 +1,7 @@
 package hello.core.singleton;
 
 import hello.core.AppConfig;
-import hello.core.member.MemberSerivce;
+import hello.core.member.MemberService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,18 +16,18 @@ public class SingletonTest {
         AppConfig appConfig = new AppConfig();
 
         // 1.조회: 호출할 때마다 객체 생성
-        MemberSerivce memberSerivce1 = appConfig.memberService();
+        MemberService memberService1 = appConfig.memberService();
 
         // 2.조회: 호출할 때마다 객체 생성
-        MemberSerivce memberSerivce2 = appConfig.memberService();
+        MemberService memberService2 = appConfig.memberService();
 
         // 참조 값이 다른 것을 확인
-        System.out.println("memberSerivce1 = " + memberSerivce1);
-        System.out.println("memberSerivce2 = " + memberSerivce2);
+        System.out.println("memberSerivce1 = " + memberService1);
+        System.out.println("memberSerivce2 = " + memberService2);
         // 다른 객체 가지고옴 -> 새로운 객체 생성 -> 이때 4개만들어짐
 //        memberSerivce1 = hello.core.member.MemberServiceImpl@71e9ddb4
 //        memberSerivce2 = hello.core.member.MemberServiceImpl@394df057
-        Assertions.assertThat(memberSerivce1).isNotSameAs(memberSerivce2);  // 성공
+        Assertions.assertThat(memberService1).isNotSameAs(memberService2);  // 성공
     }
 
     // 해당 객체가 딱 하나만 생성되고 공유하도록 설계해야함 => 싱글톤
@@ -56,13 +56,13 @@ public class SingletonTest {
         ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
         // 1.조회: 호출할 때마다 객체 생성
-        MemberSerivce memberSerivce1 = ac.getBean("memberService", MemberSerivce.class);
+        MemberService memberService1 = ac.getBean("memberService", MemberService.class);
 
         // 2.조회: 호출할 때마다 객체 생성
-        MemberSerivce memberSerivce2 = ac.getBean("memberService", MemberSerivce.class);
+        MemberService memberService2 = ac.getBean("memberService", MemberService.class);
 
         // 참조 값이 다른 것을 확인
-        Assertions.assertThat(memberSerivce1).isSameAs(memberSerivce2);  // 성공
+        Assertions.assertThat(memberService1).isSameAs(memberService2);  // 성공
     }
 
 }

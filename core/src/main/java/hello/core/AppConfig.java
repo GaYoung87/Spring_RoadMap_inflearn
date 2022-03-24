@@ -3,7 +3,7 @@ package hello.core;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.member.MemberRepository;
-import hello.core.member.MemberSerivce;
+import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
@@ -43,7 +43,7 @@ public class AppConfig {
      * call AppConfig.orderService
      * */
     @Bean  // @Bean을 통해 스프링컨테이너에 등록됨
-    public MemberSerivce memberService() {
+    public MemberService memberService() {
         System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());  // 생성자 주입
     }

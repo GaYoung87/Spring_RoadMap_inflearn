@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component  // 이거 붙이면 @Bean 등록안해도 됨 -> 자동으로 MemberServiceImpl등록
 // 그러면 주입은 어케하할꺼야? @Autowired를 통해 자동 의존관계 주입
-public class MemberServiceImpl implements MemberSerivce{  // MemberSerivce의 구현체
+public class MemberServiceImpl implements MemberService {  // MemberSerivce의 구현체
     // MemberServiceImpl은 인터페이스인 MemberRepository, 구현체인 MemoryMemberRepository 둘다 의존
     // DIP 위반!
 

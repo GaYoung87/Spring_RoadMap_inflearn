@@ -12,8 +12,8 @@ import org.springframework.context.annotation.FilterType;
         // 시작점 찾기 -> hello.core.member하면 그 밑에있는 애들 다 탐색!
         // 만약, 작성하지 않는다면? 시작점은 hello.core
         // 패키지 위치를 지정하지 않고, 설정 정보 클래스의 위치를 프로젝트 최상단에 두는 것
-        basePackages = "hello.core",
-        basePackageClasses = AutoAppConfig.class,  // 이 클래스에서도 찾음
+//        basePackages = "hello.core",
+//        basePackageClasses = AutoAppConfig.class,  // 이 클래스에서도 찾음
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
 // @Configuration은 수동으로 등록해주는 것이므로 제외시켜야함
 )
