@@ -57,7 +57,7 @@ public class ApplicationContextExtendsFindTest {
     @DisplayName("부모 타입으로 모두 조회 - Object")  // 좋은 방법은 아님
     void findAllBeanByObjectType() {
         Map<String, Object> beansOfType = ac.getBeansOfType(Object.class);  // 같은 타입이 여러개인 경우 곤란하긴함
-        Assertions.assertThat(beansOfType.size()).isEqualTo(2);
+
         for (String key : beansOfType.keySet()) {
             System.out.println("key = " + key + " value = " + beansOfType.get(key));  // 실제로는 출력X
         }

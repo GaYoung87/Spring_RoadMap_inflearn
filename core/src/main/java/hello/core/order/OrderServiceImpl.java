@@ -6,10 +6,14 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+// @RequiredArgsConstructor  // final붙은거를 파라미터로 받는 생성자 만듦
+                          // 만약 private final Object object;가 추가되었다고하면 매우 편함 -> private만 추가하면 끝
 public class OrderServiceImpl implements OrderService{
     // 할인정책을 변경하기 위해서는 할인의 클라이언트인 OrderServiceImpl을 수정해야함
     /** 이때, 문제발생!!!
@@ -38,6 +42,23 @@ public class OrderServiceImpl implements OrderService{
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
+
+    // 11. 조회 빈 2개이상일 때 - @Autowired
+//    @Autowired
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = rateDiscountPolicy;
+//    }
+
+    // 22. 조회 빈 2개이상일 때 - @Qualifier
+//    @Autowired
+//    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy")DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
+
+    // 33. 조회 빈 2개이상일 때 - @Primary
+
 
     // 2. 수정자주입 : private final에서 final 없애야함
 //    @Autowired(required = false)
