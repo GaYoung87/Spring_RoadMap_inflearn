@@ -18,7 +18,6 @@ public class LogDemoService {
 
     // proxy 설정했다면
     private final MyLogger myLogger;
-
     public void logic(String id) {
         // MyLogger myLogger = myLoggerProvider.getObject();  //
         myLogger.log("service id: " + id);
